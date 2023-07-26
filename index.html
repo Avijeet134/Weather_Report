@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="model.css"/>
+    
+    </head>
+    <div class="container">
+        <div class="row header" style="text-align:center;color:rgb(17, 128, 0)">
+            <h3>Hourly Weather Report</h3>
+        </div>
+        <button name="button" value="OK" type="button" id="btnWeather" onclick="getWeather()"> Get weather</button>
+        <button name="button" value="OK" type="button" id="btnWindSpeed" onclick="getWind()"> Get Wind Speed</button>
+        <button name="button" value="OK" type="button" id="btnPressure" onclick="getPressure()">Get Pressure</button>
+    
+    
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Temperature</th>
+                    <th>Temperature minimum</th>
+                    <th>Temperature maximum</th>
+                    <th>Pressure</th>
+                    <th>Sea level</th>
+                    <th>Ground level</th>
+                    <th>Humidity</th>
+                    <th>Temperature Kf</th>
+                </tr>
+            </thead>
+    
+        </table>
+    </div>
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Weather Report</h2>
+            </div>
+            <div class="modal-body">
+                <div id="divWeather">
+                    <label>Select Date:</label>
+                    <input type="datetime-local" onchange="handleInputTemprature()" id="weatherInput" />
+                    
+                </div>
+                <div id="divWindSpeed">
+                    <label>Select Date:</label>
+                    <input type="datetime-local" id="windInput" onchange="handleInputWind()" />
+                </div>
+                <div id="divPressure">
+                    <label>Select Date:</label>
+                    <input type="datetime-local" id="pressureInput" onchange="handleInputPressure()"  />
+                </div>
+                <div id="result">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <h3></h3>
+            </div>
+        </div>
+    
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        new DataTable('#example', {
+            ajax: {
+                dataSrc: 'list',
+                url: 'weather.txt'
+            },
+            columns: [
+                { data: 'main.temp' },
+                { data: 'main.temp_min' },
+                { data: 'main.temp_max' },
+                { data: 'main.pressure' },
+                { data: 'main.sea_level' },
+                { data: 'main.grnd_level' },
+                { data: 'main.humidity' },
+                { data: 'main.temp_kf' },
+            ]
+        });
+    
+    </script>
+    <script script type="text/javascript" src="logic.js" ></script>
+</html>
